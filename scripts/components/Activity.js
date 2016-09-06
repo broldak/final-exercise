@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react';
 
-const Activity = ({ onClick, name, amount, description, activity_datetime }) => (
+const Activity = ({ onClick, name, amount, description, activity_datetime }) => {
+  const dateTime = new Date(activity_datetime).toString();
+
+  return (
   <li
     onClick={onClick}
   >
@@ -8,15 +11,15 @@ const Activity = ({ onClick, name, amount, description, activity_datetime }) => 
       {name}
     </div>
     <div className='activity-field'>
+      ${amount}
+    </div>
+    <div className='activity-field'>
+      {dateTime}
+    </div>
+    <div className='activity-field'>
       {description}
     </div>
-    <div className='activity-field'>
-      {amount}
-    </div>
-    <div className='activity-field'>
-      {activity_datetime}
-    </div>
   </li>
-);
+)};
 
 export default Activity;

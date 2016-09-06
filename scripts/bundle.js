@@ -22310,17 +22310,17 @@ var Activities = function Activities(_ref) {
       _react2.default.createElement(
         'h3',
         null,
-        'Description'
-      ),
-      _react2.default.createElement(
-        'h3',
-        null,
         'Amount'
       ),
       _react2.default.createElement(
         'h3',
         null,
         'Date/Time'
+      ),
+      _react2.default.createElement(
+        'h3',
+        null,
+        'Description'
       )
     ),
     _react2.default.createElement(
@@ -22354,6 +22354,9 @@ var Activity = function Activity(_ref) {
   var amount = _ref.amount;
   var description = _ref.description;
   var activity_datetime = _ref.activity_datetime;
+
+  var dateTime = new Date(activity_datetime).toString();
+
   return _react2.default.createElement(
     'li',
     {
@@ -22367,17 +22370,18 @@ var Activity = function Activity(_ref) {
     _react2.default.createElement(
       'div',
       { className: 'activity-field' },
-      description
-    ),
-    _react2.default.createElement(
-      'div',
-      { className: 'activity-field' },
+      '$',
       amount
     ),
     _react2.default.createElement(
       'div',
       { className: 'activity-field' },
-      activity_datetime
+      dateTime
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'activity-field' },
+      description
     )
   );
 };
@@ -22518,8 +22522,16 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 /* Reducers */
 
+//Initially sort most recent to least recent
+function sortByDate(item1, item2) {
+  var date1 = item1.activity_datetime;
+  var date2 = item2.activity_datetime;
+
+  return date1 < date2 ? 1 : date1 === date2 ? 0 : -1;
+}
+
 var initialState = {
-  activities: _activity2.default
+  activities: _activity2.default.sort(sortByDate)
 };
 
 function vizApp() {

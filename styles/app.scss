@@ -1,6 +1,7 @@
 // variables
 $border-color: #ccc;
 $accent-color: #f8706c;
+$text-color: #444;
 
 body,
 html {
@@ -8,6 +9,7 @@ html {
   padding: 0;
   font-family: 'Source Sans Pro', sans-serif;
   font-weight: 300;
+  color: $text-color;
 }
 
 #app {
@@ -41,6 +43,7 @@ html {
       h3 {
         flex: 1;
         font-weight: 400;
+        font-size: 16px;
       }
     }
 
@@ -49,6 +52,7 @@ html {
         padding: 12px 16px;
         border-bottom: 1px solid $border-color;
         display: flex;
+        font-size: 14px;
 
         .activity-field {
           flex: 1;

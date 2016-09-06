@@ -3,13 +3,14 @@ html {
   margin: 0;
   padding: 0;
   font-family: 'Source Sans Pro', sans-serif;
-  font-weight: 300; }
+  font-weight: 300;
+  color: #444; }
 
 #app {
   padding: 0 16px; }
   #app h1 {
     font-weight: 600;
-    font-size: 24px; }
+    font-size: 28px; }
   #app h2 {
     font-weight: 400;
     font-size: 20px;
@@ -22,15 +23,17 @@ html {
     margin-bottom: 16px; }
   #app .activities .table-header {
     display: flex;
-    padding: 8px 16px;
+    padding: 12px 16px;
     border-bottom: 1px solid #ccc; }
     #app .activities .table-header h3 {
       flex: 1;
-      font-weight: 400; }
+      font-weight: 400;
+      font-size: 16px; }
   #app .activities ul li {
     padding: 12px 16px;
     border-bottom: 1px solid #ccc;
-    display: flex; }
+    display: flex;
+    font-size: 14px; }
     #app .activities ul li .activity-field {
       flex: 1; }
     #app .activities ul li:nth-child(even) {
