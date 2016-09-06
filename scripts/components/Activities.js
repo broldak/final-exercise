@@ -3,7 +3,7 @@ import Activity from './Activity';
 
 const Activities = ({ activities }) => (
   <div className='activities'>
-    <h2>Activities</h2>
+    <h2>Activities ({activities.length})</h2>
 
     <ul>
       {activities.map( activity =>

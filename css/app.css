@@ -12,9 +12,18 @@ html {
     font-size: 24px; }
   #app h2 {
     font-weight: 400;
-    font-size: 20px; }
+    font-size: 20px;
+    margin-bottom: 8px; }
   #app nav {
-    height: 40px;
+    height: 60px;
     border-bottom: 1px solid #ccc;
     display: flex;
-    align-items: center; }
+    align-items: center;
+    margin-bottom: 16px; }
+  #app .activities h2 {
+    padding-left: 16px; }
+  #app .activities ul li {
+    padding: 16px;
+    border-bottom: 1px solid #ccc; }
+    #app .activities ul li:nth-child(even) {
+      background-color: #f1f1f1; }

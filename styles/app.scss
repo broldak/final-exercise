@@ -17,12 +17,31 @@ html {
   h2 {
     font-weight: 400;
     font-size: 20px;
+    margin-bottom: 8px;
   }
 
   nav {
-    height: 40px;
+    height: 60px;
     border-bottom: 1px solid #ccc;
     display: flex;
     align-items: center;
+    margin-bottom: 16px;
+  }
+
+  .activities {
+    h2 {
+      padding-left: 16px;
+    }
+
+    ul {
+      li {
+        padding: 16px;
+        border-bottom: 1px solid #ccc;
+
+        &:nth-child(even) {
+          background-color: #f1f1f1;
+        }
+      }
+    }
   }
 }
