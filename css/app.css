@@ -7,6 +7,12 @@ html {
 
 #app {
   padding: 0 16px; }
+  #app h1 {
+    font-weight: 600;
+    font-size: 24px; }
+  #app h2 {
+    font-weight: 400;
+    font-size: 20px; }
   #app nav {
     height: 40px;
     border-bottom: 1px solid #ccc;
