@@ -2,8 +2,8 @@ body,
 html {
   margin: 0;
   padding: 0;
-  font-family: 'Helvetica Neue';
-  font-weight: 200; }
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 300; }
 
 #app {
   padding: 0 16px; }
@@ -22,8 +22,18 @@ html {
     margin-bottom: 16px; }
   #app .activities h2 {
     padding-left: 16px; }
-  #app .activities ul li {
-    padding: 16px;
+  #app .activities .table-header {
+    display: flex;
+    padding: 8px 16px;
     border-bottom: 1px solid #ccc; }
+    #app .activities .table-header h3 {
+      flex: 1;
+      font-weight: 400; }
+  #app .activities ul li {
+    padding: 12px 16px;
+    border-bottom: 1px solid #ccc;
+    display: flex; }
+    #app .activities ul li .activity-field {
+      flex: 1; }
     #app .activities ul li:nth-child(even) {
-      background-color: #f1f1f1; }
+      background-color: #f8f8f8; }

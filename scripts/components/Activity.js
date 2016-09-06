@@ -4,10 +4,18 @@ const Activity = ({ onClick, name, amount, description, activity_datetime }) => 
   <li
     onClick={onClick}
   >
-    {name}
-    {description}
-    {amount}
-    {activity_datetime}
+    <div className='activity-field'>
+      {name}
+    </div>
+    <div className='activity-field'>
+      {description}
+    </div>
+    <div className='activity-field'>
+      {amount}
+    </div>
+    <div className='activity-field'>
+      {activity_datetime}
+    </div>
   </li>
 );
 
