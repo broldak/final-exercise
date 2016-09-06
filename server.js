@@ -1,7 +1,16 @@
 var express = require('express');
 var path = require('path');
 var sass = require('node-sass-middleware');
+var fs = require('fs');
+var browserify = require('browserify');
+
 var app = express();
+
+// TODO: remove when shipping, only in dev
+browserify('scripts/app.js')
+  .transform('babelify', {presets: ['es2015', 'react']})
+  .bundle()
+  .pipe(fs.createWriteStream('scripts/bundle.js'));
 
 app.use(express.static(__dirname + '/scripts/'));
 // app.use(express.static(__dirname + '/styles/'));
