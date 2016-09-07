@@ -23,7 +23,7 @@ html {
   h2 {
     font-weight: 400;
     font-size: 20px;
-    margin-bottom: 8px;
+    margin-bottom: 16px;
   }
 
   nav {
@@ -36,6 +36,26 @@ html {
 
   .activity-chart-container {
     margin-bottom: 16px;
+  }
+
+  .filters-list {
+    display: flex;
+    margin-bottom: 16px;
+
+    a {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      border-bottom: none;
+      padding: 8px 0px;
+      font-weight: 400;
+      color: $text-color;
+
+      &.active {
+        border-bottom: 3px solid $accent-color;
+        color: $accent-color;
+      }
+    }
   }
 
   .activities {

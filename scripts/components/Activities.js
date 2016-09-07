@@ -1,6 +1,7 @@
 import React from 'react';
 import Activity from './Activity';
 import { Line } from 'react-chartjs';
+import FilterLinkContainer from '../containers/FilterLinkContainer';
 
 const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -32,12 +33,28 @@ const Activities = ({ activities, activityByMonth }) => {
 
   return (
     <div>
+      <h2>Activities ({activities.length})</h2>
+      <div className='filters-list'>
+        <FilterLinkContainer filter="ALL">
+          All
+        </FilterLinkContainer>
+        <FilterLinkContainer filter="FEE">
+          Fees
+        </FilterLinkContainer>
+        <FilterLinkContainer filter="TRANSACTION">
+          Transactions
+        </FilterLinkContainer>
+        <FilterLinkContainer filter="REWARD">
+          Rewards
+        </FilterLinkContainer>
+        <FilterLinkContainer filter="PAYMENT">
+          Payments
+        </FilterLinkContainer>
+      </div>
       <div className='activity-chart-container'>
         <Line data={chartData} options={chartOptions} />
       </div>
       <div className='activities'>
-        <h2>Activities ({activities.length})</h2>
-
         <div className='table-header'>
           <h3>Name</h3>
           <h3>Amount</h3>

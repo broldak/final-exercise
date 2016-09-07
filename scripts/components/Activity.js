@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 
 const Activity = ({ onClick, name, amount, description, activity_datetime }) => {
   const dateTime = new Date(activity_datetime).toString();

@@ -26186,7 +26186,6 @@ var TYPE_FILTERS = exports.TYPE_FILTERS = {
   FEE: 'FEE',
   REWARD: 'REWARD',
   PAYMENT: 'PAYMENT',
-  OTHER: 'OTHER',
   ALL: 'ALL'
 };
 
@@ -26227,7 +26226,7 @@ debugger;
   _react2.default.createElement(_App2.default, null)
 ), document.getElementById('app'));
 
-},{"./components/App":208,"./reducers":212,"react":194,"react-dom":44,"react-redux":47,"redux":200}],206:[function(require,module,exports){
+},{"./components/App":208,"./reducers":214,"react":194,"react-dom":44,"react-redux":47,"redux":200}],206:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26243,6 +26242,10 @@ var _Activity = require('./Activity');
 var _Activity2 = _interopRequireDefault(_Activity);
 
 var _reactChartjs = require('react-chartjs');
+
+var _FilterLinkContainer = require('../containers/FilterLinkContainer');
+
+var _FilterLinkContainer2 = _interopRequireDefault(_FilterLinkContainer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -26279,6 +26282,42 @@ var Activities = function Activities(_ref) {
     'div',
     null,
     _react2.default.createElement(
+      'h2',
+      null,
+      'Activities (',
+      activities.length,
+      ')'
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'filters-list' },
+      _react2.default.createElement(
+        _FilterLinkContainer2.default,
+        { filter: 'ALL' },
+        'All'
+      ),
+      _react2.default.createElement(
+        _FilterLinkContainer2.default,
+        { filter: 'FEE' },
+        'Fees'
+      ),
+      _react2.default.createElement(
+        _FilterLinkContainer2.default,
+        { filter: 'TRANSACTION' },
+        'Transactions'
+      ),
+      _react2.default.createElement(
+        _FilterLinkContainer2.default,
+        { filter: 'REWARD' },
+        'Rewards'
+      ),
+      _react2.default.createElement(
+        _FilterLinkContainer2.default,
+        { filter: 'PAYMENT' },
+        'Payments'
+      )
+    ),
+    _react2.default.createElement(
       'div',
       { className: 'activity-chart-container' },
       _react2.default.createElement(_reactChartjs.Line, { data: chartData, options: chartOptions })
@@ -26286,13 +26325,6 @@ var Activities = function Activities(_ref) {
     _react2.default.createElement(
       'div',
       { className: 'activities' },
-      _react2.default.createElement(
-        'h2',
-        null,
-        'Activities (',
-        activities.length,
-        ')'
-      ),
       _react2.default.createElement(
         'div',
         { className: 'table-header' },
@@ -26330,7 +26362,7 @@ var Activities = function Activities(_ref) {
 
 exports.default = Activities;
 
-},{"./Activity":207,"react":194,"react-chartjs":36}],207:[function(require,module,exports){
+},{"../containers/FilterLinkContainer":213,"./Activity":207,"react":194,"react-chartjs":36}],207:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26398,6 +26430,10 @@ var _Header = require('./Header');
 
 var _Header2 = _interopRequireDefault(_Header);
 
+var _FilterLinkContainer = require('../containers/FilterLinkContainer');
+
+var _FilterLinkContainer2 = _interopRequireDefault(_FilterLinkContainer);
+
 var _ActivitiesContainer = require('../containers/ActivitiesContainer');
 
 var _ActivitiesContainer2 = _interopRequireDefault(_ActivitiesContainer);
@@ -26419,7 +26455,7 @@ var App = function App() {
 
 exports.default = App;
 
-},{"../containers/ActivitiesContainer":211,"./Footer":209,"./Header":210,"react":194}],209:[function(require,module,exports){
+},{"../containers/ActivitiesContainer":212,"../containers/FilterLinkContainer":213,"./Footer":209,"./Header":210,"react":194}],209:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26470,6 +26506,46 @@ var Header = function Header() {
 exports.default = Header;
 
 },{"react":194}],211:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require("react");
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Link = function Link(_ref) {
+  var active = _ref.active;
+  var children = _ref.children;
+  var _onClick = _ref.onClick;
+
+  if (active) {
+    return _react2.default.createElement(
+      "a",
+      { className: "active" },
+      children
+    );
+  }
+
+  return _react2.default.createElement(
+    "a",
+    { href: "#",
+      onClick: function onClick(e) {
+        e.preventDefault();
+        _onClick();
+      }
+    },
+    children
+  );
+};
+
+exports.default = Link;
+
+},{"react":194}],212:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26484,8 +26560,27 @@ var _Activities2 = _interopRequireDefault(_Activities);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var getActivities = function getActivities(activities) {
-  return activities;
+var getActivities = function getActivities(activities, filter) {
+  switch (filter) {
+    case 'TRANSACTION':
+      return activities.filter(function (a) {
+        return a.activity_type === 'transactions';
+      });
+    case 'FEE':
+      return activities.filter(function (a) {
+        return a.activity_type === 'fees';
+      });
+    case 'REWARD':
+      return activities.filter(function (a) {
+        return a.activity_type === 'rewards';
+      });
+    case 'PAYMENT':
+      return activities.filter(function (a) {
+        return a.activity_type === 'payments';
+      });
+    case 'ALL':
+      return activities;
+  }
 };
 
 var groupByMonth = function groupByMonth(activities) {
@@ -26504,9 +26599,11 @@ var groupByMonth = function groupByMonth(activities) {
 };
 
 var mapStateToProps = function mapStateToProps(state) {
+  var activities = getActivities(state.activities, state.typeFilter);
+  var activityByMonth = groupByMonth(activities);
   return {
-    activities: getActivities(state.activities),
-    activityByMonth: groupByMonth(state.activities)
+    activities: activities,
+    activityByMonth: activityByMonth
   };
 };
 
@@ -26518,7 +26615,42 @@ var ActivitiesContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchT
 
 exports.default = ActivitiesContainer;
 
-},{"../components/Activities":206,"react-redux":47}],212:[function(require,module,exports){
+},{"../components/Activities":206,"react-redux":47}],213:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = require('react-redux');
+
+var _actions = require('../actions');
+
+var _Link = require('../components/Link');
+
+var _Link2 = _interopRequireDefault(_Link);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, props) {
+  return {
+    active: props.filter === state.typeFilter
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, props) {
+  return {
+    onClick: function onClick() {
+      dispatch((0, _actions.setTypeFilter)(props.filter));
+    }
+  };
+};
+
+var FilterLink = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Link2.default);
+
+exports.default = FilterLink;
+
+},{"../actions":204,"../components/Link":211,"react-redux":47}],214:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

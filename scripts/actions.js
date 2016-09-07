@@ -9,7 +9,6 @@ export const TYPE_FILTERS = {
   FEE: 'FEE',
   REWARD: 'REWARD',
   PAYMENT: 'PAYMENT',
-  OTHER: 'OTHER',
   ALL: 'ALL'
 };
 

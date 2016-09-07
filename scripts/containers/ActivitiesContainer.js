@@ -1,8 +1,19 @@
 import { connect } from 'react-redux';
 import Activities from '../components/Activities';
 
-const getActivities = (activities) => {
-  return activities;
+const getActivities = (activities, filter) => {
+  switch (filter) {
+    case 'TRANSACTION':
+      return activities.filter(a => a.activity_type === 'transactions')
+    case 'FEE':
+      return activities.filter(a => a.activity_type === 'fees')
+    case 'REWARD':
+      return activities.filter(a => a.activity_type === 'rewards')
+    case 'PAYMENT':
+      return activities.filter(a => a.activity_type === 'payments')
+    case 'ALL':
+      return activities;
+  }
 }
 
 const groupByMonth = (activities) => {
@@ -21,9 +32,11 @@ const groupByMonth = (activities) => {
 }
 
 const mapStateToProps = (state) => {
+  const activities = getActivities(state.activities, state.typeFilter);
+  const activityByMonth = groupByMonth(activities);
   return {
-    activities: getActivities(state.activities),
-    activityByMonth: groupByMonth(state.activities)
+    activities,
+    activityByMonth
   };
 }
 
