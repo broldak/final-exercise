@@ -10,7 +10,7 @@ html {
   padding: 0 16px; }
   #app h1 {
     font-weight: 600;
-    font-size: 28px; }
+    font-size: 24px; }
   #app h2 {
     font-weight: 400;
     font-size: 20px;
@@ -20,6 +20,8 @@ html {
     border-bottom: 2px solid #f8706c;
     display: flex;
     align-items: center;
+    margin-bottom: 16px; }
+  #app .activity-chart-container {
     margin-bottom: 16px; }
   #app .activities .table-header {
     display: flex;
