@@ -7,6 +7,8 @@ import App from './components/App';
 
 let store = createStore(todoApp);
 
+debugger;
+
 render(
   <Provider store={store}>
     <App />

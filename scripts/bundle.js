@@ -26171,6 +26171,32 @@ module.exports = function symbolObservablePonyfill(root) {
 },{}],204:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.setTypeFilter = setTypeFilter;
+/* Action types */
+
+var SET_TYPE_FILTER = exports.SET_TYPE_FILTER = 'SET_FILTER';
+
+/* Action Creators */
+
+var TYPE_FILTERS = exports.TYPE_FILTERS = {
+  TRANSACTION: 'TRANSACTION',
+  FEE: 'FEE',
+  REWARD: 'REWARD',
+  PAYMENT: 'PAYMENT',
+  OTHER: 'OTHER',
+  ALL: 'ALL'
+};
+
+function setTypeFilter(filter) {
+  return { type: SET_TYPE_FILTER, filter: filter };
+}
+
+},{}],205:[function(require,module,exports){
+'use strict';
+
 var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
@@ -26193,13 +26219,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var store = (0, _redux.createStore)(_reducers2.default);
 
+debugger;
+
 (0, _reactDom.render)(_react2.default.createElement(
   _reactRedux.Provider,
   { store: store },
   _react2.default.createElement(_App2.default, null)
 ), document.getElementById('app'));
 
-},{"./components/App":208,"./reducers":213,"react":194,"react-dom":44,"react-redux":47,"redux":200}],205:[function(require,module,exports){
+},{"./components/App":208,"./reducers":212,"react":194,"react-dom":44,"react-redux":47,"redux":200}],206:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26302,7 +26330,7 @@ var Activities = function Activities(_ref) {
 
 exports.default = Activities;
 
-},{"./Activity":206,"react":194,"react-chartjs":36}],206:[function(require,module,exports){
+},{"./Activity":207,"react":194,"react-chartjs":36}],207:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26355,59 +26383,7 @@ var Activity = function Activity(_ref) {
 
 exports.default = Activity;
 
-},{"react":194}],207:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = require('react');
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactChartjs = require('react-chartjs');
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-
-var ActivityByMonth = function ActivityByMonth(_ref) {
-  var activities = _ref.activities;
-  var activityByMonth = _ref.activityByMonth;
-
-  var chartData = {
-    labels: labels,
-    datasets: [{
-      fillColor: "#f8706c",
-      strokeColor: "#f8706c",
-      pointColor: "#fff",
-      pointStrokeColor: "#f8c1c3",
-      pointHighlightFill: "#fff",
-      pointHighlightStroke: "#f8706c",
-      data: activityByMonth
-    }]
-  };
-
-  var chartOptions = {
-    bezierCurve: false,
-    datasetFill: false,
-    pointDotStrokeWidth: 1,
-    scaleShowVerticalLines: false,
-    responsive: true,
-    scaleFontFamily: "'Source Sans Pro'",
-    pointLabelFontFamily: "'Source Sans Pro'"
-  };
-
-  return _react2.default.createElement(
-    'div',
-    { className: 'activity-chart-container' },
-    _react2.default.createElement(_reactChartjs.Line, { data: chartData, options: chartOptions })
-  );
-};
-exports.default = ActivityByMonth;
-
-},{"react":194,"react-chartjs":36}],208:[function(require,module,exports){
+},{"react":194}],208:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26421,10 +26397,6 @@ var _react2 = _interopRequireDefault(_react);
 var _Header = require('./Header');
 
 var _Header2 = _interopRequireDefault(_Header);
-
-var _ActivityByMonthContainer = require('../containers/ActivityByMonthContainer');
-
-var _ActivityByMonthContainer2 = _interopRequireDefault(_ActivityByMonthContainer);
 
 var _ActivitiesContainer = require('../containers/ActivitiesContainer');
 
@@ -26447,7 +26419,7 @@ var App = function App() {
 
 exports.default = App;
 
-},{"../containers/ActivitiesContainer":211,"../containers/ActivityByMonthContainer":212,"./Footer":209,"./Header":210,"react":194}],209:[function(require,module,exports){
+},{"../containers/ActivitiesContainer":211,"./Footer":209,"./Header":210,"react":194}],209:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -26546,71 +26518,29 @@ var ActivitiesContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchT
 
 exports.default = ActivitiesContainer;
 
-},{"../components/Activities":205,"react-redux":47}],212:[function(require,module,exports){
+},{"../components/Activities":206,"react-redux":47}],212:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _reactRedux = require('react-redux');
-
-var _ActivityByMonth = require('../components/ActivityByMonth');
-
-var _ActivityByMonth2 = _interopRequireDefault(_ActivityByMonth);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var getActivities = function getActivities(activities) {
-  return activities;
-};
-
-var groupByMonth = function groupByMonth(activities) {
-  var arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-  activities.forEach(function (activity) {
-    console.log(activity.activity_datetime);
-
-    var date = new Date(activity.activity_datetime);
-    var month = date.getMonth();
-
-    arr[month] += 1;
-  });
-
-  return arr;
-};
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    activities: getActivities(state.activities),
-    activityByMonth: groupByMonth(state.activities)
-  };
-};
-
-var mapDispatchToProps = function mapDispatchToProps(state) {
-  return {};
-};
-
-var ActivityByMonthContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_ActivityByMonth2.default);
-
-exports.default = ActivityByMonthContainer;
-
-},{"../components/ActivityByMonth":207,"react-redux":47}],213:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+var _redux = require('redux');
 
 var _activity = require('../data/activity');
 
 var _activity2 = _interopRequireDefault(_activity);
 
+var _actions = require('./actions');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var ALL = _actions.TYPE_FILTERS.ALL;
 
 /* Reducers */
 
 //Initially sort most recent to least recent
+
 function sortByDate(item1, item2) {
   var date1 = item1.activity_datetime;
   var date2 = item2.activity_datetime;
@@ -26618,18 +26548,30 @@ function sortByDate(item1, item2) {
   return date1 < date2 ? 1 : date1 === date2 ? 0 : -1;
 }
 
-var initialState = {
-  activities: _activity2.default.sort(sortByDate)
-};
-
-function vizApp() {
-  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+function activities() {
+  var state = arguments.length <= 0 || arguments[0] === undefined ? _activity2.default.sort(sortByDate) : arguments[0];
   var action = arguments[1];
 
-  // TODO: handle actions
   return state;
 }
 
+function typeFilter() {
+  var state = arguments.length <= 0 || arguments[0] === undefined ? ALL : arguments[0];
+  var action = arguments[1];
+
+  switch (action.type) {
+    case _actions.SET_TYPE_FILTER:
+      return action.filter;
+    default:
+      return state;
+  }
+}
+
+var vizApp = (0, _redux.combineReducers)({
+  typeFilter: typeFilter,
+  activities: activities
+});
+
 exports.default = vizApp;
 
-},{"../data/activity":1}]},{},[204]);
+},{"../data/activity":1,"./actions":204,"redux":200}]},{},[205]);

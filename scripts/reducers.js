@@ -1,4 +1,8 @@
+import { combineReducers } from 'redux'
 import activity from '../data/activity';
+import { SET_TYPE_FILTER, TYPE_FILTERS } from './actions'
+
+const { ALL } = TYPE_FILTERS;
 
 /* Reducers */
 
@@ -10,13 +14,22 @@ function sortByDate (item1, item2) {
   return date1 < date2 ? 1 : date1 === date2 ? 0 : -1;
 }
 
-const initialState = {
-  activities: activity.sort(sortByDate)
-};
-
-function vizApp(state = initialState, action) {
-  // TODO: handle actions
+function activities(state = activity.sort(sortByDate), action) {
   return state;
 }
+
+function typeFilter(state = ALL, action) {
+  switch (action.type) {
+    case SET_TYPE_FILTER:
+      return action.filter;
+    default:
+      return state;
+  }
+}
+
+const vizApp = combineReducers({
+  typeFilter,
+  activities
+});
 
 export default vizApp;
