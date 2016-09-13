@@ -32,6 +32,30 @@ html {
     display: flex;
     align-items: center;
     margin-bottom: 16px;
+
+    .logo-section {
+      flex: 1;
+    }
+
+    .nav-list {
+      a {
+        padding: 16px;
+
+        &:last-of-type {
+          padding-right: 0;
+        }
+      }
+    }
+
+    a {
+      text-decoration: none;
+      font-weight: 400;
+      color: $text-color;
+
+      &.active {
+        color: $accent-color;
+      }
+    }
   }
 
   .activity-chart-container {

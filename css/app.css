@@ -21,6 +21,18 @@ html {
     display: flex;
     align-items: center;
     margin-bottom: 16px; }
+    #app nav .logo-section {
+      flex: 1; }
+    #app nav .nav-list a {
+      padding: 16px; }
+      #app nav .nav-list a:last-of-type {
+        padding-right: 0; }
+    #app nav a {
+      text-decoration: none;
+      font-weight: 400;
+      color: #444; }
+      #app nav a.active {
+        color: #f8706c; }
   #app .activity-chart-container {
     margin-bottom: 16px; }
   #app .filters-list {

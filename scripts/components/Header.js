@@ -1,12 +1,15 @@
 import React from 'react';
-import { Link, browserHistory } from 'react-router'
+import NavContainer from '../containers/NavContainer';
 
 const Header = () => (
   <nav>
-    <h1>Final</h1>
+    <div className="logo-section">
+      <h1>Final</h1>
+    </div>
 
-    <Link to="/transactions">Transactions</Link>
-    <Link to="/">Activities</Link>
+    <div className="nav-list">
+      <NavContainer />
+    </div>
   </nav>
 );
 

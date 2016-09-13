@@ -34959,7 +34959,7 @@ var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHi
   )
 ), document.getElementById('app'));
 
-},{"./components/ActivityWrap":275,"./components/App":276,"./components/TransactionsWrap":281,"./reducers":285,"react":259,"react-dom":66,"react-redux":69,"react-router":108,"react-router-redux":75,"redux":265}],273:[function(require,module,exports){
+},{"./components/ActivityWrap":275,"./components/App":276,"./components/TransactionsWrap":282,"./reducers":287,"react":259,"react-dom":66,"react-redux":69,"react-router":108,"react-router-redux":75,"redux":265}],273:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35095,7 +35095,7 @@ var Activities = function Activities(_ref) {
 
 exports.default = Activities;
 
-},{"../containers/FilterLinkContainer":283,"./Activity":274,"react":259,"react-chartjs":58}],274:[function(require,module,exports){
+},{"../containers/FilterLinkContainer":284,"./Activity":274,"react":259,"react-chartjs":58}],274:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35175,7 +35175,7 @@ var ActivityWrap = function ActivityWrap() {
 
 exports.default = ActivityWrap;
 
-},{"../containers/ActivitiesContainer":282,"react":259}],276:[function(require,module,exports){
+},{"../containers/ActivitiesContainer":283,"react":259}],276:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35216,7 +35216,7 @@ var App = function App(_ref) {
 
 exports.default = App;
 
-},{"../containers/ActivitiesContainer":282,"../containers/FilterLinkContainer":283,"./Footer":277,"./Header":278,"react":259}],277:[function(require,module,exports){
+},{"../containers/ActivitiesContainer":283,"../containers/FilterLinkContainer":284,"./Footer":277,"./Header":278,"react":259}],277:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35250,7 +35250,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = require('react-router');
+var _NavContainer = require('../containers/NavContainer');
+
+var _NavContainer2 = _interopRequireDefault(_NavContainer);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -35259,21 +35261,25 @@ var Header = function Header() {
     'nav',
     null,
     _react2.default.createElement(
-      'h1',
-      null,
-      'Final'
+      'div',
+      { className: 'logo-section' },
+      _react2.default.createElement(
+        'h1',
+        null,
+        'Final'
+      )
     ),
     _react2.default.createElement(
-      _reactRouter.Link,
-      { to: '/transactions' },
-      'Transactions'
+      'div',
+      { className: 'nav-list' },
+      _react2.default.createElement(_NavContainer2.default, null)
     )
   );
 };
 
 exports.default = Header;
 
-},{"react":259,"react-router":108}],279:[function(require,module,exports){
+},{"../containers/NavContainer":285,"react":259}],279:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -35324,6 +35330,41 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouter = require('react-router');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Nav = function Nav(_ref) {
+  var currentRoute = _ref.currentRoute;
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(
+      _reactRouter.Link,
+      { to: '/transactions', className: currentRoute === '/transactions' ? 'active' : null },
+      'Transactions'
+    ),
+    _react2.default.createElement(
+      _reactRouter.Link,
+      { to: '/', className: currentRoute === '/' ? 'active' : null },
+      'Activities'
+    )
+  );
+};
+
+exports.default = Nav;
+
+},{"react":259,"react-router":108}],281:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Transactions = function Transactions() {
@@ -35336,7 +35377,7 @@ var Transactions = function Transactions() {
 
 exports.default = Transactions;
 
-},{"react":259}],281:[function(require,module,exports){
+},{"react":259}],282:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35363,7 +35404,7 @@ var TransactionsWrap = function TransactionsWrap() {
 
 exports.default = TransactionsWrap;
 
-},{"../containers/TransactionsContainer":284,"react":259}],282:[function(require,module,exports){
+},{"../containers/TransactionsContainer":286,"react":259}],283:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35433,7 +35474,7 @@ var ActivitiesContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchT
 
 exports.default = ActivitiesContainer;
 
-},{"../components/Activities":273,"react-redux":69}],283:[function(require,module,exports){
+},{"../components/Activities":273,"react-redux":69}],284:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35468,7 +35509,38 @@ var FilterLink = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_
 
 exports.default = FilterLink;
 
-},{"../actions":271,"../components/Link":279,"react-redux":69}],284:[function(require,module,exports){
+},{"../actions":271,"../components/Link":279,"react-redux":69}],285:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = require('react-redux');
+
+var _Nav = require('../components/Nav');
+
+var _Nav2 = _interopRequireDefault(_Nav);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state) {
+  debugger;
+
+  return {
+    currentRoute: state.routing.locationBeforeTransitions.pathname
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(state) {
+  return {};
+};
+
+var NavContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Nav2.default);
+
+exports.default = NavContainer;
+
+},{"../components/Nav":280,"react-redux":69}],286:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -35495,7 +35567,7 @@ var TransactionsContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatc
 
 exports.default = TransactionsContainer;
 
-},{"../components/Transactions":280,"react-redux":69}],285:[function(require,module,exports){
+},{"../components/Transactions":281,"react-redux":69}],287:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
