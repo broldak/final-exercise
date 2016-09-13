@@ -6,6 +6,7 @@ const Header = () => (
     <h1>Final</h1>
 
     <Link to="/transactions">Transactions</Link>
+    <Link to="/">Activities</Link>
   </nav>
 );
 
