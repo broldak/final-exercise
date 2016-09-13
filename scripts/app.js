@@ -2,16 +2,27 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { syncHistoryWithStore } from 'react-router-redux';
 import todoApp from './reducers';
 import App from './components/App';
+import ActivityWrap from './components/ActivityWrap';
+import TransactionsWrap from './components/TransactionsWrap';
 
 let store = createStore(todoApp);
 
 debugger;
 
+const history = syncHistoryWithStore(browserHistory, store);
+
 render(
   <Provider store={store}>
-    <App />
+    <Router history={history}>
+      <Route path="/" component={App}>
+        <IndexRoute component={ActivityWrap}/>
+        <Route path="transactions" component={TransactionsWrap}/>
+      </Route>
+    </Router>
   </Provider>,
   document.getElementById('app')
 );

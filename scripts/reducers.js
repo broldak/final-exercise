@@ -1,6 +1,8 @@
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
+import { routerReducer } from 'react-router-redux';
 import activity from '../data/activity';
-import { SET_TYPE_FILTER, TYPE_FILTERS } from './actions'
+import transaction from '../data/transactions';
+import { SET_TYPE_FILTER, TYPE_FILTERS } from './actions';
 
 const { ALL } = TYPE_FILTERS;
 
@@ -18,6 +20,10 @@ function activities(state = activity.sort(sortByDate), action) {
   return state;
 }
 
+function transactions(state = transaction) {
+  return state;
+}
+
 function typeFilter(state = ALL, action) {
   switch (action.type) {
     case SET_TYPE_FILTER:
@@ -29,7 +35,9 @@ function typeFilter(state = ALL, action) {
 
 const vizApp = combineReducers({
   typeFilter,
-  activities
+  activities,
+  transactions,
+  routing: routerReducer,
 });
 
 export default vizApp;

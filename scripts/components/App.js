@@ -4,10 +4,10 @@ import FilterLinkContainer from '../containers/FilterLinkContainer';
 import ActivitiesContainer from '../containers/ActivitiesContainer';
 import Footer from './Footer';
 
-const App = () => (
+const App = ({ children }) => (
   <div>
     <Header />
-    <ActivitiesContainer />
+    {children}
   </div>
 );
 
