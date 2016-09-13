@@ -8,10 +8,9 @@ import todoApp from './reducers';
 import App from './components/App';
 import ActivityWrap from './components/ActivityWrap';
 import TransactionsWrap from './components/TransactionsWrap';
+import Chart from 'chart.js';
 
 let store = createStore(todoApp);
-
-debugger;
 
 const history = syncHistoryWithStore(browserHistory, store);
 

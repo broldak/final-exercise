@@ -33,8 +33,13 @@ html {
       color: #444; }
       #app nav a.active {
         color: #f8706c; }
-  #app .activity-chart-container {
-    margin-bottom: 16px; }
+  #app .activity-charts {
+    display: flex; }
+    #app .activity-charts .activity-chart-container {
+      margin-bottom: 16px;
+      flex: 1; }
+      #app .activity-charts .activity-chart-container canvas {
+        width: 100% !important; }
   #app .filters-list {
     display: flex;
     margin-bottom: 16px; }

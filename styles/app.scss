@@ -58,8 +58,18 @@ html {
     }
   }
 
-  .activity-chart-container {
-    margin-bottom: 16px;
+  .activity-charts {
+    display: flex;
+
+    .activity-chart-container {
+      margin-bottom: 16px;
+      flex: 1;
+
+      canvas {
+        //make the charts responsive
+        width: 100% !important;
+      }
+    }
   }
 
   .filters-list {

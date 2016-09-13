@@ -20,8 +20,6 @@ const groupByMonth = (activities) => {
   const arr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   activities.forEach((activity) => {
-    console.log(activity.activity_datetime);
-
     const date = new Date(activity.activity_datetime);
     const month = date.getMonth();
 
@@ -31,12 +29,43 @@ const groupByMonth = (activities) => {
   return arr;
 }
 
+const groupByAmount = (activities) => {
+  // Amount intervals will be
+  // less than 0, 0 to 10, 11 to 50, greater than 50
+  const arr = [0, 0, 0, 0];
+
+  activities.forEach((activity) => {
+    const floatAmount = parseFloat(activity.amount);
+
+    if (floatAmount < 0) {
+      arr[0]+=1;
+    }
+
+    if (floatAmount >= 0 && floatAmount <= 10) {
+      arr[1]+=1;
+    }
+
+    if (floatAmount >= 11 && floatAmount <= 50) {
+      arr[2]+=1;
+    }
+
+    if (floatAmount >= 51) {
+      arr[3]+=1;
+    }
+  });
+
+  debugger;
+  return arr;
+}
+
 const mapStateToProps = (state) => {
   const activities = getActivities(state.activities, state.typeFilter);
   const activityByMonth = groupByMonth(activities);
+  const activityByAmount = groupByAmount(activities);
   return {
     activities,
-    activityByMonth
+    activityByMonth,
+    activityByAmount,
   };
 }
 
