@@ -99,6 +99,7 @@ const Activities = ({ activities, activityByMonth, activityByAmount }) => {
         <ul>
           {activities.map( activity =>
             <Activity
+              key={activity.id}
               {...activity}
             />
           )}
