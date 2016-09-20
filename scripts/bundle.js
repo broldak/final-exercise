@@ -50089,6 +50089,10 @@ var _TransactionsWrap = require('./components/TransactionsWrap');
 
 var _TransactionsWrap2 = _interopRequireDefault(_TransactionsWrap);
 
+var _TransactionWrap = require('./components/TransactionWrap');
+
+var _TransactionWrap2 = _interopRequireDefault(_TransactionWrap);
+
 var _chart = require('chart.js');
 
 var _chart2 = _interopRequireDefault(_chart);
@@ -50109,12 +50113,13 @@ var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHi
       _reactRouter.Route,
       { path: '/', component: _App2.default },
       _react2.default.createElement(_reactRouter.IndexRoute, { component: _ActivityWrap2.default }),
-      _react2.default.createElement(_reactRouter.Route, { path: 'transactions', component: _TransactionsWrap2.default })
+      _react2.default.createElement(_reactRouter.Route, { path: 'transactions', component: _TransactionsWrap2.default }),
+      _react2.default.createElement(_reactRouter.Route, { path: 'transaction/:id', component: _TransactionWrap2.default })
     )
   )
 ), document.getElementById('app'));
 
-},{"./components/ActivityWrap":321,"./components/App":322,"./components/TransactionsWrap":328,"./reducers":333,"chart.js":3,"react":305,"react-dom":112,"react-redux":115,"react-router":154,"react-router-redux":121,"redux":311}],319:[function(require,module,exports){
+},{"./components/ActivityWrap":321,"./components/App":322,"./components/TransactionWrap":328,"./components/TransactionsWrap":330,"./reducers":336,"chart.js":3,"react":305,"react-dom":112,"react-redux":115,"react-router":154,"react-router-redux":121,"redux":311}],319:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50281,7 +50286,7 @@ var Activities = function Activities(_ref) {
 
 exports.default = Activities;
 
-},{"../containers/FilterLinkContainer":330,"./Activity":320,"react":305,"react-chartjs":104,"react-chartjs-2":64}],320:[function(require,module,exports){
+},{"../containers/FilterLinkContainer":332,"./Activity":320,"react":305,"react-chartjs":104,"react-chartjs-2":64}],320:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50292,6 +50297,8 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRouter = require('react-router');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Activity = function Activity(_ref) {
@@ -50300,8 +50307,10 @@ var Activity = function Activity(_ref) {
   var amount = _ref.amount;
   var description = _ref.description;
   var activity_datetime = _ref.activity_datetime;
+  var parent_id = _ref.parent_id;
 
   var dateTime = new Date(activity_datetime).toString();
+  var link = '/transaction/' + parent_id;
 
   return _react2.default.createElement(
     'li',
@@ -50309,32 +50318,36 @@ var Activity = function Activity(_ref) {
       onClick: onClick
     },
     _react2.default.createElement(
-      'div',
-      { className: 'activity-field' },
-      name
-    ),
-    _react2.default.createElement(
-      'div',
-      { className: 'activity-field' },
-      '$',
-      amount
-    ),
-    _react2.default.createElement(
-      'div',
-      { className: 'activity-field' },
-      dateTime
-    ),
-    _react2.default.createElement(
-      'div',
-      { className: 'activity-field' },
-      description
+      _reactRouter.Link,
+      { to: link },
+      _react2.default.createElement(
+        'div',
+        { className: 'activity-field' },
+        name
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'activity-field' },
+        '$',
+        amount
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'activity-field' },
+        dateTime
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'activity-field' },
+        description
+      )
     )
   );
 };
 
 exports.default = Activity;
 
-},{"react":305}],321:[function(require,module,exports){
+},{"react":305,"react-router":154}],321:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50361,7 +50374,7 @@ var ActivityWrap = function ActivityWrap() {
 
 exports.default = ActivityWrap;
 
-},{"../containers/ActivitiesContainer":329,"react":305}],322:[function(require,module,exports){
+},{"../containers/ActivitiesContainer":331,"react":305}],322:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50402,7 +50415,7 @@ var App = function App(_ref) {
 
 exports.default = App;
 
-},{"../containers/ActivitiesContainer":329,"../containers/FilterLinkContainer":330,"./Footer":323,"./Header":324,"react":305}],323:[function(require,module,exports){
+},{"../containers/ActivitiesContainer":331,"../containers/FilterLinkContainer":332,"./Footer":323,"./Header":324,"react":305}],323:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50440,6 +50453,8 @@ var _NavContainer = require('../containers/NavContainer');
 
 var _NavContainer2 = _interopRequireDefault(_NavContainer);
 
+var _reactRouter = require('react-router');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Header = function Header() {
@@ -50450,9 +50465,13 @@ var Header = function Header() {
       'div',
       { className: 'logo-section' },
       _react2.default.createElement(
-        'h1',
-        null,
-        'Final'
+        _reactRouter.Link,
+        { to: '/' },
+        _react2.default.createElement(
+          'h1',
+          null,
+          'Final'
+        )
       )
     ),
     _react2.default.createElement(
@@ -50465,7 +50484,7 @@ var Header = function Header() {
 
 exports.default = Header;
 
-},{"../containers/NavContainer":331,"react":305}],325:[function(require,module,exports){
+},{"../containers/NavContainer":333,"react":305,"react-router":154}],325:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -50553,17 +50572,88 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Transactions = function Transactions() {
+var Transaction = function Transaction(_ref) {
+  var transaction = _ref.transaction;
   return _react2.default.createElement(
     'div',
     null,
-    'Transactions'
+    'Transaction',
+    transaction.amount,
+    Date(transaction.transaction_datetime),
+    transaction.merchant_name,
+    transaction.card_entry_mode,
+    transaction.card_acceptor_name_location
+  );
+};
+
+exports.default = Transaction;
+
+},{"react":305}],328:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _TransactionContainer = require('../containers/TransactionContainer');
+
+var _TransactionContainer2 = _interopRequireDefault(_TransactionContainer);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var TransactionWrap = function TransactionWrap(_ref) {
+  var params = _ref.params;
+
+  debugger;
+
+  return _react2.default.createElement(_TransactionContainer2.default, { params: params });
+};
+
+exports.default = TransactionWrap;
+
+},{"../containers/TransactionContainer":334,"react":305}],329:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require('react');
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactChartjs = require('react-chartjs-2');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Transactions = function Transactions(_ref) {
+  var cardIds = _ref.cardIds;
+  var cardCountArray = _ref.cardCountArray;
+
+  var data = {
+    labels: cardIds,
+    datasets: [{
+      label: 'Transactions',
+      backgroundColor: "#f8706c",
+      hoverBackgroundColor: "#bd5652",
+      data: cardCountArray
+    }]
+  };
+
+  return _react2.default.createElement(
+    'div',
+    null,
+    _react2.default.createElement(_reactChartjs.Bar, { data: data })
   );
 };
 
 exports.default = Transactions;
 
-},{"react":305}],328:[function(require,module,exports){
+},{"react":305,"react-chartjs-2":64}],330:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50590,7 +50680,7 @@ var TransactionsWrap = function TransactionsWrap() {
 
 exports.default = TransactionsWrap;
 
-},{"../containers/TransactionsContainer":332,"react":305}],329:[function(require,module,exports){
+},{"../containers/TransactionsContainer":335,"react":305}],331:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50689,7 +50779,7 @@ var ActivitiesContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchT
 
 exports.default = ActivitiesContainer;
 
-},{"../components/Activities":319,"react-redux":115}],330:[function(require,module,exports){
+},{"../components/Activities":319,"react-redux":115}],332:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50724,7 +50814,7 @@ var FilterLink = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_
 
 exports.default = FilterLink;
 
-},{"../actions":317,"../components/Link":325,"react-redux":115}],331:[function(require,module,exports){
+},{"../actions":317,"../components/Link":325,"react-redux":115}],333:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50755,7 +50845,42 @@ var NavContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)
 
 exports.default = NavContainer;
 
-},{"../components/Nav":326,"react-redux":115}],332:[function(require,module,exports){
+},{"../components/Nav":326,"react-redux":115}],334:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _reactRedux = require('react-redux');
+
+var _Transaction = require('../components/Transaction');
+
+var _Transaction2 = _interopRequireDefault(_Transaction);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mapStateToProps = function mapStateToProps(state, ownProps) {
+  var id = Number(ownProps.params.id);
+
+  var transaction = state.transactions.find(function (item) {
+    return id === item.id;
+  });
+
+  return {
+    transaction: transaction
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(state) {
+  return {};
+};
+
+var TransactionContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(_Transaction2.default);
+
+exports.default = TransactionContainer;
+
+},{"../components/Transaction":327,"react-redux":115}],335:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -50771,7 +50896,31 @@ var _Transactions2 = _interopRequireDefault(_Transactions);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
-  return state;
+  debugger;
+
+  var cardIds = [];
+  // const cardCounts = {};
+  var cardCountArray = [];
+
+  // collect unique card ids
+  state.transactions.forEach(function (item) {
+    if (!cardIds.includes(item.card_id)) {
+      cardIds.push(item.card_id);
+    }
+  });
+
+  cardCountArray = cardIds.map(function (item) {
+    return state.transactions.filter(function (transaction) {
+      return transaction.card_id === item;
+    }).length;
+  });
+
+  debugger;
+
+  return {
+    cardIds: cardIds,
+    cardCountArray: cardCountArray
+  };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(state) {
@@ -50782,7 +50931,7 @@ var TransactionsContainer = (0, _reactRedux.connect)(mapStateToProps, mapDispatc
 
 exports.default = TransactionsContainer;
 
-},{"../components/Transactions":327,"react-redux":115}],333:[function(require,module,exports){
+},{"../components/Transactions":329,"react-redux":115}],336:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {

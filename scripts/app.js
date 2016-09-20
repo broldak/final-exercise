@@ -8,6 +8,7 @@ import todoApp from './reducers';
 import App from './components/App';
 import ActivityWrap from './components/ActivityWrap';
 import TransactionsWrap from './components/TransactionsWrap';
+import TransactionWrap from './components/TransactionWrap';
 import Chart from 'chart.js';
 
 let store = createStore(todoApp);
@@ -20,6 +21,7 @@ render(
       <Route path="/" component={App}>
         <IndexRoute component={ActivityWrap}/>
         <Route path="transactions" component={TransactionsWrap}/>
+        <Route path="transaction/:id" component={TransactionWrap}/>
       </Route>
     </Router>
   </Provider>,

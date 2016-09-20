@@ -1,10 +1,11 @@
 import React from 'react';
 import NavContainer from '../containers/NavContainer';
+import { Link } from 'react-router'
 
 const Header = () => (
   <nav>
     <div className="logo-section">
-      <h1>Final</h1>
+      <Link to="/"><h1>Final</h1></Link>
     </div>
 
     <div className="nav-list">

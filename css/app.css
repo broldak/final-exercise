@@ -65,8 +65,11 @@ html {
   #app .activities ul li {
     padding: 12px 16px;
     border-bottom: 1px solid #ccc;
-    display: flex;
     font-size: 14px; }
+    #app .activities ul li a {
+      display: flex;
+      text-decoration: none;
+      color: #444; }
     #app .activities ul li .activity-field {
       flex: 1; }
     #app .activities ul li:nth-child(even) {
