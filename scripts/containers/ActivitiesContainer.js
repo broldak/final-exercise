@@ -54,7 +54,6 @@ const groupByAmount = (activities) => {
     }
   });
 
-  debugger;
   return arr;
 }
 

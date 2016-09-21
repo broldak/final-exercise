@@ -127,4 +127,25 @@ html {
       }
     }
   }
+
+  .transaction {
+    .transaction-title {
+      margin-bottom: 4px;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 400;
+      color: #777;
+      margin-bottom: 12px;
+    }
+
+    p {
+      margin-bottom: 8px;
+
+      .value {
+        font-weight: 400;
+      }
+    }
+  }
 }

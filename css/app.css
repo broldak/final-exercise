@@ -74,3 +74,14 @@ html {
       flex: 1; }
     #app .activities ul li:nth-child(even) {
       background-color: #f8f8f8; }
+  #app .transaction .transaction-title {
+    margin-bottom: 4px; }
+  #app .transaction h3 {
+    font-size: 18px;
+    font-weight: 400;
+    color: #777;
+    margin-bottom: 12px; }
+  #app .transaction p {
+    margin-bottom: 8px; }
+    #app .transaction p .value {
+      font-weight: 400; }

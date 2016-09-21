@@ -16,6 +16,7 @@ const Transactions = ({ cardIds, cardCountArray }) => {
 
   return (
   <div>
+    <h2>Transactions by Card ID</h2>
     <Bar data={data} />
   </div>
 )};

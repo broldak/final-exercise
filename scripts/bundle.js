@@ -50189,8 +50189,6 @@ var Activities = function Activities(_ref) {
     pointLabelFontFamily: "'Source Sans Pro'"
   };
 
-  debugger;
-
   return _react2.default.createElement(
     'div',
     null,
@@ -50576,13 +50574,69 @@ var Transaction = function Transaction(_ref) {
   var transaction = _ref.transaction;
   return _react2.default.createElement(
     'div',
-    null,
-    'Transaction',
-    transaction.amount,
-    Date(transaction.transaction_datetime),
-    transaction.merchant_name,
-    transaction.card_entry_mode,
-    transaction.card_acceptor_name_location
+    { className: 'transaction' },
+    _react2.default.createElement(
+      'h2',
+      { className: 'transaction-title' },
+      'Transaction #',
+      transaction.id
+    ),
+    _react2.default.createElement(
+      'h3',
+      null,
+      'Amount: $',
+      transaction.amount
+    ),
+    _react2.default.createElement(
+      'p',
+      null,
+      'Status: ',
+      _react2.default.createElement(
+        'span',
+        { className: 'value' },
+        transaction.status
+      )
+    ),
+    _react2.default.createElement(
+      'p',
+      null,
+      'Date: ',
+      _react2.default.createElement(
+        'span',
+        { className: 'value' },
+        Date(transaction.transaction_datetime)
+      )
+    ),
+    _react2.default.createElement(
+      'p',
+      null,
+      'Merchant Name: ',
+      _react2.default.createElement(
+        'span',
+        { className: 'value' },
+        transaction.merchant_name
+      )
+    ),
+    _react2.default.createElement(
+      'p',
+      null,
+      'Card Entry Mode: ',
+      _react2.default.createElement(
+        'span',
+        { className: 'value' },
+        transaction.card_entry_mode
+      )
+    ),
+    _react2.default.createElement(
+      'p',
+      null,
+      'Acceptor Location: ',
+      _react2.default.createElement(
+        'span',
+        { className: 'value' },
+        transaction.card_acceptor_name_location
+      )
+    )
   );
 };
 
@@ -50607,9 +50661,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var TransactionWrap = function TransactionWrap(_ref) {
   var params = _ref.params;
-
-  debugger;
-
   return _react2.default.createElement(_TransactionContainer2.default, { params: params });
 };
 
@@ -50647,6 +50698,11 @@ var Transactions = function Transactions(_ref) {
   return _react2.default.createElement(
     'div',
     null,
+    _react2.default.createElement(
+      'h2',
+      null,
+      'Transactions by Card ID'
+    ),
     _react2.default.createElement(_reactChartjs.Bar, { data: data })
   );
 };
@@ -50756,7 +50812,6 @@ var groupByAmount = function groupByAmount(activities) {
     }
   });
 
-  debugger;
   return arr;
 };
 
@@ -50830,8 +50885,6 @@ var _Nav2 = _interopRequireDefault(_Nav);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
-  debugger;
-
   return {
     currentRoute: state.routing.locationBeforeTransitions.pathname
   };
@@ -50896,8 +50949,6 @@ var _Transactions2 = _interopRequireDefault(_Transactions);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var mapStateToProps = function mapStateToProps(state) {
-  debugger;
-
   var cardIds = [];
   // const cardCounts = {};
   var cardCountArray = [];
@@ -50914,8 +50965,6 @@ var mapStateToProps = function mapStateToProps(state) {
       return transaction.card_id === item;
     }).length;
   });
-
-  debugger;
 
   return {
     cardIds: cardIds,

@@ -57,8 +57,6 @@ const Activities = ({ activities, activityByMonth, activityByAmount }) => {
     pointLabelFontFamily : "'Source Sans Pro'",
   };
 
-  debugger;
-
   return (
     <div>
       <h2>Activities ({activities.length})</h2>

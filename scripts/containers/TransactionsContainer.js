@@ -2,8 +2,6 @@ import { connect } from 'react-redux';
 import Transactions from '../components/Transactions';
 
 const mapStateToProps = (state) => {
-  debugger;
-
   const cardIds = [];
   // const cardCounts = {};
   let cardCountArray = [];
@@ -20,8 +18,6 @@ const mapStateToProps = (state) => {
       return transaction.card_id === item;
     }).length;
   });
-
-  debugger;
 
   return {
     cardIds,
