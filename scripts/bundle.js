@@ -51007,7 +51007,7 @@ var ALL = _actions.TYPE_FILTERS.ALL;
 
 /* Reducers */
 
-//Initially sort most recent to least recent
+// Initially sort most recent to least recent
 
 function sortByDate(item1, item2) {
   var date1 = item1.activity_datetime;
@@ -51016,6 +51016,7 @@ function sortByDate(item1, item2) {
   return date1 < date2 ? 1 : date1 === date2 ? 0 : -1;
 }
 
+// return default state, which simply sorts activities by date
 function activities() {
   var state = arguments.length <= 0 || arguments[0] === undefined ? _activity2.default.sort(sortByDate) : arguments[0];
   var action = arguments[1];
@@ -51023,12 +51024,15 @@ function activities() {
   return state;
 }
 
+// return default state which simply returns transactions unsorted
 function transactions() {
   var state = arguments.length <= 0 || arguments[0] === undefined ? _transactions2.default : arguments[0];
 
   return state;
 }
 
+// typeFilter reducer
+// change state of application in response to the setTypeFilter action
 function typeFilter() {
   var state = arguments.length <= 0 || arguments[0] === undefined ? ALL : arguments[0];
   var action = arguments[1];

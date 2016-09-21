@@ -3,7 +3,6 @@
 export const SET_TYPE_FILTER = 'SET_FILTER';
 
 /* Action Creators */
-
 export const TYPE_FILTERS = {
   TRANSACTION: 'TRANSACTION',
   FEE: 'FEE',
@@ -12,6 +11,8 @@ export const TYPE_FILTERS = {
   ALL: 'ALL'
 };
 
+// setTypeFilter
+// Returns object with action type and filter value
 export function setTypeFilter(filter) {
   return {type: SET_TYPE_FILTER, filter};
 }
